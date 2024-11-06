@@ -1,0 +1,46 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "Every click +1 speed", IntroEnabled = false, HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- values
+
+_G.autoclick = true 
+
+-- functions
+
+function autoclick()
+	while _G.autoclick == true do
+		game:GetService("ReplicatedStorage").IncreaseSpeed:FireServer()
+		wait(.0001)
+	end
+end
+
+-- tabs
+local AutoTab = Window:MakeTab({
+	Name = "AutoFarm",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+-- buttons
+
+-- toggles
+
+AutoTab:AddToggle({
+	Name = "AutoFarm",
+	Default = false,
+	Callback = function(Value)
+		_G.autoclick = Value
+		autoclick()
+	end    
+})
+
+AutoTab:AddToggle({
+	Name = "AutoHatch",
+	Default = false,
+	Callback = function(Value)
+		print(Value)
+	end    
+})
+
+
